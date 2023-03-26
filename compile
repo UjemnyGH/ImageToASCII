@@ -1,0 +1,2 @@
+#!/bin/bash
+gcc -O3 -m64 -std=c2x -o imgascii src/*.c -lm -lpthread
