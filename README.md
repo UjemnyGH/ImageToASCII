@@ -4,7 +4,7 @@
 ## Image To ASCII is a simple program converting images like PNG or JPG to ASCII art form
 
 ### Libs used in project:
-    [stb_image](https://github.com/nothings/stb)
+[stb_image](https://github.com/nothings/stb)
 
 ### Instructions:
    ```
