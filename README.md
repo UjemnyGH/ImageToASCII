@@ -12,8 +12,10 @@
     -o | --output           -   path to output text file, optional
     -w | --width            -   image width, optional
     -h | --height           -   image height, optional
-    -c | --charset          -   set custom charset (currently doesn`t work)
+    -c | --charset          -   set custom charset
     -p | --pixels-width     -   amount of chars per pixel width (default 2)
     -b | --better-ratio     -   show better ratio hints
     --help                  -   shows help prompt
    ```
+
+Have fun playing with it!

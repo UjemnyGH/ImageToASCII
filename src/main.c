@@ -36,10 +36,10 @@ int least_common_divisor(int a, int b) {
 
 int main(int argc, char *argv[]) {
     // Default chharacter set (gray map) defined by me
-    char default_set[] = {' ', '.', ',', ':', '!', '[', '?', '#'};
+    unsigned char default_set[] = {' ', '.', ',', ':', '!', '[', '?', '#'};
 
     // Character set
-    char* set;
+    unsigned char set[256];
     // If set to 1 (-b or --better-ratio option) show what could work better for final image, although it doesn`t work perfectly
     int show_hint = 0;
     // Image data
@@ -60,8 +60,6 @@ int main(int argc, char *argv[]) {
     char output_file[1024] = "output.txt";
     // Length of character set used for memory allocation
     int set_length = sizeof(default_set);
-
-    set = (char*)malloc(sizeof(default_set));
 
     // Data setup
 
@@ -88,13 +86,10 @@ int main(int argc, char *argv[]) {
             chars_per_pixel = atoi(argv[i + 1]);
         }
 
-        // Defining charset deosn`t work
         if(strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "--charset") == 0) {
-            set_length = strlen(argv[i + 1]) - 2;
+            set_length = strlen(argv[i + 1]);
 
-            realloc(set, set_length);
-
-            strncpy(set, *(&argv[i + 1] + sizeof(char)), set_length + 1);
+            strcpy(set, argv[i + 1]);
         }
 
         if(strcmp(argv[i], "-b") == 0 || strcmp(argv[i], "--better-ratio") == 0) {
@@ -109,7 +104,7 @@ int main(int argc, char *argv[]) {
                 "\t\t-o | --output\t\t-\tpath to output text file\n"
                 "\t\t-w | --width\t\t-\timage width, optional\n"
                 "\t\t-h | --height\t\t-\timage height, optional\n"
-                "\t\t-c | --charset\t\t-\tset custom charset (currently doesn`t work)\n"
+                "\t\t-c | --charset\t\t-\tset custom charset\n"
                 "\t\t-p | --pixels-width\t-\tamount of chars per pixel width (default 2)\n"
                 "\t\t-b | --better-ratio\t-\tshow better ratio hints\n"
                 "\t\t--help\t\t\t-\tshows this prompt\n"
@@ -170,7 +165,6 @@ int main(int argc, char *argv[]) {
     }
 
     fclose(file);
-    free(set);
     stbi_image_free(pixels);
 
     return 0;
